@@ -1,10 +1,10 @@
 (function () {
-  
+
   // Turn on/off the logging syste,
-  var LOG = false 
+  var LOG = false
 
   // a list of scripts to load
-  var scripts = []; 
+  var scripts = [];
 
   // Writes contains the data coming from each document.write.
   var writes = null;
@@ -22,7 +22,7 @@
     }else {
       LOG && console.log('document.write() unexpected args = ', args);
     }
-  }  
+  }
 
   // Override the Document.write function to use the tempDocWriteln.
   function overrideDocWrites() {
@@ -83,37 +83,37 @@
 
     if (!scripts || scripts.loading) return; // already loading
     scripts.loading = true;
-    
+
     (function loadNext() {
-      
+
       // Break the recursive loop of loading all the scripts.
       if (!scripts.length){
         delete scripts.loading;
         return;
       }
-      
-      
+
+
       // Find the Gist script ID we need to load.
       var $currentScript = scripts.shift();
-      
+
       if ($currentScript) {
         LOG && console.log('loadNext() overriding writes ...');
-        
+
         // override the document.write function to write to a buffer instead
         // of a document.
         overrideDocWrites();writes = null;
-        
+
         // Load this script and when its done revert the document.write.
         loadScript($currentScript, function(){
             // clear for next
-            restoreDocWrites(); writes = null; 
-            
+            restoreDocWrites(); writes = null;
+
             // load the next script if there is any.
             loadNext();
-        });       
+        });
       }
       // maybe there's a hole in the list
-      else { 
+      else {
         loadNext();
       }
     })();
@@ -128,7 +128,7 @@
     });
     loadScripts(); // safely callable multiple times
   }
-  
+
 
   window['initGist'] = initGist;
 })();
