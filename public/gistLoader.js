@@ -1,9 +1,4 @@
 (function() {
-
-    var jqueryPath      = "https://raw.github.com/stackmagic/gist-Blogger/master/public/jquery-1.8.3.min.js";
-    var gistBloggerPath = "https://raw.github.com/moski/gist-Blogger/master/public/gistBlogger.js";
-
-    // Initialize the load the main script.
     try {
         initGist();
     } catch(e) {
@@ -11,6 +6,7 @@
         if (document.getElementById(jqueryScriptId) == null) {
             var elem = document.createElement('SCRIPT');
             elem.id = jqueryScriptId;
+            elem.src = "https://raw.github.com/stackmagic/gist-Blogger/master/public/jquery-1.8.3.min.js";
             var theBody = document.getElementsByTagName('body')[0];
             theBody.appendChild(elem);
         }
@@ -22,7 +18,7 @@
             elem.onload = function() {
               initGist();
             }
-            elem.src = gistBloggerPath;
+            elem.src = "https://raw.github.com/moski/gist-Blogger/master/public/gistBlogger.js";
             var theBody = document.getElementsByTagName('body')[0];
             theBody.appendChild(elem);
         }
