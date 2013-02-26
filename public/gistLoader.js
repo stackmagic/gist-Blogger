@@ -1,4 +1,3 @@
-
 function loadLoader() {
     var gistScriptId = 'gistPrinter';
     if (document.getElementById(gistScriptId) === null) {
@@ -7,7 +6,7 @@ function loadLoader() {
         elem.onload = function() {
           initGist();
         }
-        elem.src = "https://raw.github.com/moski/gist-Blogger/master/public/gistBlogger.js";
+        elem.src = "https://raw.github.com/stackmagic/gist-Blogger/master/public/gistBlogger.js";
         var theBody = document.getElementsByTagName('body')[0];
         theBody.appendChild(elem);
     }
